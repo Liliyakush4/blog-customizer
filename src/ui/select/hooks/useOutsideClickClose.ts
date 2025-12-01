@@ -1,10 +1,11 @@
+// кастомный хук, который закрывает элемент при клике вне его области
 import { useEffect } from 'react';
 
 type UseOutsideClickClose = {
-	isOpen: boolean;
-	onChange: (newValue: boolean) => void;
-	onClose?: () => void;
-	rootRef: React.RefObject<HTMLDivElement>;
+	isOpen: boolean; // текущее состояние (открыто/закрыто)
+	onChange: (newValue: boolean) => void; //функция для изменения состояния
+	onClose?: () => void; // опциональный клобек при закрытиии
+	rootRef: React.RefObject<HTMLDivElement>; // ref на корневой элемент
 };
 
 export const useOutsideClickClose = ({
@@ -17,7 +18,7 @@ export const useOutsideClickClose = ({
 		const handleClick = (event: MouseEvent) => {
 			const { target } = event;
 			if (target instanceof Node && !rootRef.current?.contains(target)) {
-				isOpen && onClose?.();
+				isOpen && onClose?.(); // логика выполняется только если элемент открыт
 				onChange?.(false);
 			}
 		};
