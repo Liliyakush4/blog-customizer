@@ -1,10 +1,8 @@
-import clsx from 'clsx'; // утилита для объединения css классов
+import clsx from 'clsx';
+import plane from 'src/images/plane.png';
+import { Text } from 'src/ui/text';
 
-// Сообщаем вебпаку, что этот файл использует это изображение.
-import plane from 'src/images/plane.png'; // изображение для статьи
-import { Text } from 'src/ui/text'; // кастомный компонент текста
-
-import styles from './Article.module.scss'; // CSS модуль для стилей
+import styles from './Article.module.scss';
 
 export const Article = () => {
 	return (

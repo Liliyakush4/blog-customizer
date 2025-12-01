@@ -1,4 +1,3 @@
-// компонент с настройкой параметров статьи
 import { useState, useRef, FormEvent } from 'react';
 import clsx from 'clsx';
 
@@ -24,26 +23,21 @@ import { useOutsideClickClose } from 'src/ui/select/hooks/useOutsideClickClose';
 import styles from './ArticleParamsForm.module.scss';
 
 type ArticleParamsFormProps = {
-	// колбек, который применяет новые настройки к статье
 	onApply: (state: ArticleStateType) => void;
 };
 
 export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
-	// открыта ли панель
 	const [isOpen, setIsOpen] = useState(false);
 
-	// внутреннее состояние формы
 	const [formState, setFormState] =
 		useState<ArticleStateType>(defaultArticleState);
 
-	// корневой контейнер панели
 	const rootRef = useRef<HTMLDivElement>(null);
 
 	const handleToggle = () => {
 		setIsOpen((prev) => !prev);
 	};
 
-	// закрываем по клику вне панели
 	useOutsideClickClose({
 		isOpen,
 		rootRef,
@@ -53,20 +47,16 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		// применяем настройки к статье
 		onApply(formState);
 	};
 
 	const handleReset = () => {
-		// сбрасываем форму на дефолтные значения
 		setFormState(defaultArticleState);
-		// и сразу применям их к статье
 		onApply(defaultArticleState);
 	};
 
 	return (
 		<div ref={rootRef}>
-			{/*кнопка-стрелка для открытия/закрытия боковой панели */}
 			<ArrowButton isOpen={isOpen} onClick={handleToggle} />
 			<aside
 				className={clsx(styles.container, {
@@ -140,4 +130,3 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 		</div>
 	);
 };
- 

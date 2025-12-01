@@ -1,17 +1,17 @@
 {
 	/* Компонент кнопки со стрелкой */
 }
-import arrow from 'src/images/arrow.svg'; // svg иконка стрелки
+import arrow from 'src/images/arrow.svg';
 
-import styles from './ArrowButton.module.scss'; // стили компонента
-import clsx from 'clsx'; // утилита для классов
+import styles from './ArrowButton.module.scss';
+import clsx from 'clsx';
 
 /** Функция для обработки открытия/закрытия формы */
 export type OnClick = () => void;
 
 type ArrowButtonProps = {
-	isOpen: boolean; // текущее состояние (открыто/закрыто)
-	onClick: OnClick; // обработчик клика
+	isOpen: boolean;
+	onClick: OnClick;
 };
 
 export const ArrowButton = ({ isOpen, onClick }: ArrowButtonProps) => {

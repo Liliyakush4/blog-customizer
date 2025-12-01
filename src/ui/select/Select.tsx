@@ -13,22 +13,21 @@ import { useOutsideClickClose } from './hooks/useOutsideClickClose';
 import styles from './Select.module.scss';
 
 type SelectProps = {
-	selected: OptionType | null; // выбранная опция
-	options: OptionType[]; // доступные опции
-	placeholder?: string; // текст-заглушка
-	onChange?: (selected: OptionType) => void; // при изменении выбора
-	onClose?: () => void; // при закрытии списка
-	title?: string; // заголовок над списком
+	selected: OptionType | null;
+	options: OptionType[];
+	placeholder?: string;
+	onChange?: (selected: OptionType) => void;
+	onClose?: () => void;
+	title?: string;
 };
 
 export const Select = (props: SelectProps) => {
-	const { options, placeholder, selected, onChange, onClose, title } = props; // деструктуризация пропсов
-	const [isOpen, setIsOpen] = useState<boolean>(false); // открыт/закрыт список
-	const rootRef = useRef<HTMLDivElement>(null); // ref на корневой элемент
-	const placeholderRef = useRef<HTMLDivElement>(null); // ref на плейсхолдер
+	const { options, placeholder, selected, onChange, onClose, title } = props;
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const rootRef = useRef<HTMLDivElement>(null);
+	const placeholderRef = useRef<HTMLDivElement>(null);
 	const optionClassName = selected?.optionClassName ?? '';
 
-	// закрытие при клике вне области списка
 	({
 		isOpen,
 		rootRef,
@@ -36,19 +35,16 @@ export const Select = (props: SelectProps) => {
 		onChange: setIsOpen,
 	});
 
-	// открыть/закрыть по нажатию на Enter
 	useEnterSubmit({
 		placeholderRef,
 		onChange: setIsOpen,
 	});
 
-	// выбор опции
 	const handleOptionClick = (option: OptionType) => {
-		setIsOpen(false); // закрываем список
-		onChange?.(option); // передаем выбранную опцию
+		setIsOpen(false);
+		onChange?.(option);
 	};
 
-	// открытие/закрытие при клике по плейсхолдеру
 	const handlePlaceHolderClick: MouseEventHandler<HTMLDivElement> = () => {
 		setIsOpen((isOpen) => !isOpen);
 	};
@@ -71,8 +67,8 @@ export const Select = (props: SelectProps) => {
 				<div
 					className={clsx(
 						styles.placeholder,
-						(styles as Record<string, string>)[optionClassName] // динамически применяются классы стилей выбраненой опции
-					)} // применяем класс из опции
+						(styles as Record<string, string>)[optionClassName]
+					)}
 					data-selected={!!selected?.value}
 					onClick={handlePlaceHolderClick}
 					role='button'
@@ -90,7 +86,7 @@ export const Select = (props: SelectProps) => {
 				{isOpen && (
 					<ul className={styles.select} data-testid='selectDropdown'>
 						{options
-							.filter((option) => selected?.value !== option.value) // исключаем выбранную опцию из списка
+							.filter((option) => selected?.value !== option.value)
 							.map((option) => (
 								<Option
 									key={option.value}
