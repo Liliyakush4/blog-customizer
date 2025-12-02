@@ -6,6 +6,7 @@ type UseEnterSubmit = {
 };
 
 export const useEnterSubmit = ({
+	//
 	placeholderRef,
 	onChange,
 }: UseEnterSubmit) => {

@@ -1,3 +1,6 @@
+{
+	/* Компонент кнопки со стрелкой */
+}
 import arrow from 'src/images/arrow.svg';
 
 import styles from './ArrowButton.module.scss';

@@ -1,11 +1,13 @@
+// конфигурации настроек для формы
 export const fontFamilyClasses = [
 	'open-sans',
 	'ubuntu',
 	'cormorant-garamond',
 	'days-one',
 	'merriweather',
-] as const;
+] as const; // массив только для чтения с литеральными типами
 
+// создание типа ('open-sans' | 'ubuntu' | 'cormorant-garamond' | ...)
 export type FontFamiliesClasses = (typeof fontFamilyClasses)[number];
 
 export type OptionType = {
@@ -15,6 +17,7 @@ export type OptionType = {
 	optionClassName?: string;
 };
 
+// опции шрифтов
 export const fontFamilyOptions: OptionType[] & {
 	optionClassName?: FontFamiliesClasses;
 } = [
@@ -33,6 +36,7 @@ export const fontFamilyOptions: OptionType[] & {
 	},
 ];
 
+// опции оттенков шрифтов
 export const fontColors: OptionType[] = [
 	{
 		title: 'Черный',
@@ -90,6 +94,7 @@ export const fontColors: OptionType[] = [
 	},
 ];
 
+// опции фоновых оттенков
 export const backgroundColors: OptionType[] = [
 	{
 		title: 'Белый',
@@ -147,6 +152,7 @@ export const backgroundColors: OptionType[] = [
 	},
 ];
 
+// варианты ширины контента
 export const contentWidthArr: OptionType[] = [
 	{
 		title: 'Широкий',
@@ -162,12 +168,14 @@ export const contentWidthArr: OptionType[] = [
 	},
 ];
 
+// опции размеров шрифта
 export const fontSizeOptions: OptionType[] = [
 	{ title: '18px', value: '18px', className: 'font-size-18' },
 	{ title: '25px', value: '25px', className: 'font-size-25' },
 	{ title: '38px', value: '38px', className: 'font-size-38' },
 ];
 
+// дефолтные значения 0 индекс из каждой категории
 export const defaultArticleState = {
 	fontFamilyOption: fontFamilyOptions[0],
 	fontColor: fontColors[0],
@@ -176,4 +184,5 @@ export const defaultArticleState = {
 	fontSizeOption: fontSizeOptions[0],
 };
 
+//созданный тип на основе структуры объекта defaultArticleState
 export type ArticleStateType = typeof defaultArticleState;
